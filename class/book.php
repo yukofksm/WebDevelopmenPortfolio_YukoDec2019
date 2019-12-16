@@ -5,10 +5,13 @@
     class Book extends Database{
 
         public function checkDate($checkIn,$checkOut){
-            $sql = "SELECT * FROM `book` WHERE checkin != '$checkIn' AND checkout != '$checkOut'";
+            // $sql = "SELECT * FROM `book` WHERE checkin != '$checkIn' AND checkout != '$checkOut'";
+
+
 
             $result = $this->conn->query($sql);
-            echo $result;
+
+            // echo $result;
             $rows = array();
 
             while($row = $result->fetch_assoc()){
