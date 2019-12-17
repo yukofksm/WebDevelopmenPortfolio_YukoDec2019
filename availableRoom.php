@@ -1,8 +1,9 @@
 <?php
     require_once 'class/book.php';
     $book = new Book();
-    // $result = $book->checkBookAvailability($checkIn,$checkOut,$adult,$kids,$roomType);
-    // $result = $book->chooseRoomType($roomType);
+    $booking = $book->checkDate($checkIn,$checkOut,$roomType,$adult,$kids);
+
+    print_r($booking);
 
     session_start();
 
@@ -26,8 +27,6 @@
             <div class="card-body">
                 <table class="table">
                     <thead>
-                        <th>#</th>
-                        <th>Room Number</th>
                         <th>Room Type</th>
                         <th>Room View</th>
                         <th>Room Price</th>
@@ -37,11 +36,10 @@
                     </thead>
                     <tbody>
                     <?php
-                        foreach ($result as $row) {
-                            $id = $row['room_id'];
+                        foreach ($booking as $row) {
+                            // $id = $row['room_id'];
                             echo "
                             <tr>
-                               
                                 <td>".$row['room_type']."</td>
                                 <td>".$row['room_view']."</td>
                                 <td>".$row['room_price']."</td>
