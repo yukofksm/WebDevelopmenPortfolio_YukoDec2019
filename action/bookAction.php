@@ -19,13 +19,13 @@
         $result = $book->checkDate($checkIn,$checkOut,$roomType,$adult,$kids);
         // $result = $book->checkDate($checkIn, $checkOut, $roomType);
 
-        print_r($result);
+        // print_r($result);
 
-        // if($result){
-        //     header("Location: ../availableRoom.php");
-        // }else{
-        //     echo "noooo";
-        // }
+        if($result){
+            header("Location: ../availableRoom.php");
+        }else{
+            echo "noooo";
+        }
     }
 
 ?>

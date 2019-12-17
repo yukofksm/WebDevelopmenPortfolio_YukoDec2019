@@ -1,7 +1,9 @@
 <?php
     require_once 'class/book.php';
     $book = new Book();
-    $result = $book->checkCapacity($adult,$kids,$checkIn,$checkOut,$roomType);
+    $booking = $book->checkDate($checkIn,$checkOut,$roomType,$adult,$kids);
+
+    print_r($booking);
 
     session_start();
 
@@ -34,7 +36,7 @@
                     </thead>
                     <tbody>
                     <?php
-                        foreach ($result as $row) {
+                        foreach ($booking as $row) {
                             // $id = $row['room_id'];
                             echo "
                             <tr>
