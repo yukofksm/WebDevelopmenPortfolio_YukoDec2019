@@ -539,7 +539,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 <div class="popup_box ">
                         <div class="popup_inner">
                             <h3>Check Availability</h3>
-                            <form action="action/bookAction.php" method="post">
+                            <form action="action/roomAction.php" method="post">
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <input id="datepicker" name="checkIn" placeholder="Check in date">
@@ -547,25 +547,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                     <div class="col-xl-6">
                                         <input id="datepicker2" name="checkOut" placeholder="Check out date">
                                     </div>
-                                    <div class="col-xl-6">
-                                        <select class="form-select wide" id="default-select" name="adult" class="">
-                                            <option data-display="Adult"></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <select class="form-select wide" id="default-select" name="kids"
-                                        class="">
-                                            <option data-display="Children"></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                    </div>
+                                    
                                     <div class="col-xl-12">
                                         <select class="form-select wide" id="default-select" name="roomType" class="">
                                             <option data-display="Room type">Room type</option>

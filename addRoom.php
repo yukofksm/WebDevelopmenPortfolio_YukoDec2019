@@ -56,6 +56,24 @@
                     <input type="number" name="cap_kids" class="form-control m-3" placeholder="  Room Children Capacity" style="border-top: none; border-right: none; border-left: none;"required>           
                 </div>
             </div>
+            <label for="">Room Image</label>
+            <?php
+                include 'connection.php';
+                $loginid = $_GET['id'];
+
+                $sql = "SELECT * FROM user WHERE login_id = '$loginid'";
+                $result = $conn->query($sql);
+
+                if($result->num_rows > 0){
+                    while($row = $result->fetch_assoc()){
+                    $image = $row['user_pic'];
+
+                    echo "<img src='uploads/$image' width=50% height=100%>";
+                    }
+                }
+            
+                echo "<br><br><a href='pictureUpload.php?id=".$_SESSION['loginid']."' class='btn btn-primary form-control w-50' role='button'><i class='fas fa-pencil-alt'></i>Edit Image</a>";
+            ?>    
                 <!-- <label>Picture Update</label>
                 <input type="password" name="pword" class="form-control m-3" placeholder="  " style="border-top: none; border-right: none; border-left: none;"> -->
                 

@@ -44,6 +44,23 @@
         $kids = $_POST['kids'] = $_SESSION['final_kids'];
 
         $room->finalDisplay($id,$type,$view,$price,$adult,$kids);
+
+    //checkからavailableRoomにいくやつ    
+    }elseif(isset($_POST['check'])){
+        
+        $roomType = $_POST['roomType'];
+        
+        $checkIn = date_create($_POST['checkIn']);
+        $checkIn = date_format($checkIn, 'Y-m-d');
+        $checkOut = date_create($_POST['checkOut']);
+        $checkOut = date_format($checkOut, 'Y-m-d');
+        
+        $result = $room->checkDate($checkIn,$checkOut,$roomType);
+        // $display = $room->displayAvailableRoom($result);
+
+        if($result){
+            header('Location: ../availableRoom.php');
+        }
     }
 
 ?>

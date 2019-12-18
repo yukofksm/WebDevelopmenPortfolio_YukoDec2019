@@ -27,18 +27,6 @@
             return $rows;
         }
 
-        public function getavailableRooms(){
-            $sql = "SELECT * FROM room WHERE room_status = 'available'";
-            $result = $this->conn->query($sql);
-
-            $rows = array();
-
-            while($row = $result->fetch_assoc()){
-                $rows[] = $row;
-            }
-            return $rows;
-        }
-
         //EDIT ROOMで表示する用
         public function getSpecRoom($roomid){
             $sql = "SELECT * FROM room WHERE room_id = '$roomid'";
@@ -87,6 +75,49 @@
                 return $result->fetch_assoc();
             }
         }
+
+        public function checkDate($checkIn,$checkOut,$roomType){
+           
+            $sql = "SELECT * FROM `book` INNER JOIN `room` ON book.room_id = room.room_id WHERE book.checkin <= '$checkOut' AND book.checkout >= '$checkIn' AND room.room_type = '$roomType'"; 
+
+            $result = $this->conn->query($sql);
+
+            if($result->num_rows == 1){
+                echo "NG";
+            }else{
+                // echo "OK";
+                // $this->displayAvailableRoom($checkIn, $checkOut, $roomType);
+                $check = "SELECT * FROM room";
+
+                $result = $this->conn->query($check);
+
+                // print_r($result->fetch_assoc());
+                $rows = array();
+
+                while ($row = $result->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+                return $rows;
+            }
+            
+        }
+
+        public function displayAvailableRoom($result){
+
+            // $sql = "SELECT * FROM `book` INNER JOIN `room` ON book.room_id = room.room_id WHERE NOT book.checkin <= '$checkOut' AND book.checkout >= '$checkIn' AND room.room_type = '$roomType'"; 
+
+            $sql = "SELECT * FROM room";
+
+            $result = $this->conn->query($sql);
+            $rows = array();
+
+            while ($row = $result->fetch_assoc()) {
+                $rows[] = $row;
+            }
+            return $rows;
+
+        }
+
 
     }
 
