@@ -4,10 +4,14 @@
 
     class Room extends Database{
 
-        public function addRoom($number,$type,$view,$price,$cap_adult,$cap_kids){
-            $add = "INSERT INTO `room`(room_num,room_type,room_view,room_price,cap_adult,cap_kids) VALUES('$number','$type','$view','$price','$cap_adult','$cap_kids')";
+        //ROOMの追加
+        public function addRoom($number,$type,$view,$price,$cap_adult,$cap_kids,$img_name){
+            $target_dir = "img/rooms"; 
+            $target_file = $target_dir.basename($_FILES['picture']['name']);
+
+            $add = "INSERT INTO `room`(room_num,room_type,room_view,room_price,cap_adult,cap_kids,room_img) VALUES('$number','$type','$view','$price','$cap_adult','$cap_kids','$img_name')";
             if($this->conn->query($add)){
-                echo "OK";
+                // echo "OK";
                 header("Location: ../allRooms.php");
             }else{
                 echo "ERROR".$this->conn->error;
@@ -26,10 +30,22 @@
             }
             return $rows;
         }
+        //Room Detail
+        public function roomDetail($id){
+            $sql = "SELECT * FROM room WHERE room_id = '$id'";
+            $result = $this->conn->query($sql);
+
+            if($result == false){
+                die("No record ".$this->conn->error);
+            }else{
+                return $result->fetch_assoc();
+            }
+        }
+
 
         //EDIT ROOMで表示する用
-        public function getSpecRoom($roomid){
-            $sql = "SELECT * FROM room WHERE room_id = '$roomid'";
+        public function getSpecRoom($id){
+            $sql = "SELECT * FROM room WHERE room_id = '$id'";
             $result = $this->conn->query($sql);
 
             if($result == false){
@@ -76,6 +92,22 @@
             }
         }
 
+        //IMAGE upload
+        public function imageUpload($img_name,$target_dir,$target_file){
+
+            $sql = "UPDATE room SET room_img = '$img_name' WHERE room_id = $roomid";
+            if($conn->query($sql)){
+                echo "IMAGE HAS BEEN UPLOADED!";
+
+                move_uploaded_file($_FILES['picture']['tmp_name'],$target_file);
+                //move_upload_file($filename,$destination)
+
+                header("..allRooms.php");
+            }else{
+                echo "ERROR IN UPLOADING".$conn->error;
+            }
+        }
+
         public function checkDate($checkIn,$checkOut,$roomType){
            
             $sql = "SELECT * FROM `book` INNER JOIN `room` ON book.room_id = room.room_id WHERE book.checkin <= '$checkOut' AND book.checkout >= '$checkIn' AND room.room_type = '$roomType'"; 
@@ -86,23 +118,23 @@
                 echo "NG";
             }else{
                 // echo "OK";
-                // $this->displayAvailableRoom($checkIn, $checkOut, $roomType);
-                $check = "SELECT * FROM room";
+                $this->displayAvailableRoom($checkIn, $checkOut, $roomType);
+                // $check = "SELECT * FROM room";
 
-                $result = $this->conn->query($check);
+                // $result = $this->conn->query($check);
 
-                // print_r($result->fetch_assoc());
-                $rows = array();
+                // // print_r($result->fetch_assoc());
+                // $rows = array();
 
-                while ($row = $result->fetch_assoc()) {
-                    $rows[] = $row;
-                }
-                return $rows;
+                // while ($row = $result->fetch_assoc()) {
+                //     $rows[] = $row;
+                // }
+                // return $rows;
             }
             
         }
 
-        public function displayAvailableRoom($result){
+        public function displayAvailableRoom($checkIn, $checkOut, $roomType){
 
             // $sql = "SELECT * FROM `book` INNER JOIN `room` ON book.room_id = room.room_id WHERE NOT book.checkin <= '$checkOut' AND book.checkout >= '$checkIn' AND room.room_type = '$roomType'"; 
 
