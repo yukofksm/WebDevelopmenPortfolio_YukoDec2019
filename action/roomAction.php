@@ -13,7 +13,9 @@
         $cap_adult = $_POST['cap_adult'];
         $cap_kids = $_POST['cap_kids'];
 
-        $room->addRoom($number,$type,$view,$price,$cap_adult,$cap_kids);
+        $img_name = $_FILES['picture']['name'];
+        
+        $room->addRoom($number,$type,$view,$price,$cap_adult,$cap_kids,$img_name);
 
     //EDIT ROOM
     }elseif(isset($_POST['edit'])){
@@ -55,12 +57,26 @@
         $checkOut = date_create($_POST['checkOut']);
         $checkOut = date_format($checkOut, 'Y-m-d');
         
-        $result = $room->checkDate($checkIn,$checkOut,$roomType);
+        $room->checkDate($checkIn,$checkOut,$roomType);
         // $display = $room->displayAvailableRoom($result);
 
-        if($result){
+        if($room->checkDate($checkIn,$checkOut,$roomType)){
             header('Location: ../availableRoom.php');
         }
+
+    //image upload
+    }elseif(isset($_POST['upload'])) {
+        $img_name = $_FILES['picture']['name'];
+        //['picture'] = name of the element inside the form
+        //['name'] = any name automatically created by the computer; refers to attribute df the element
+
+        $target_dir = "img/"; //the directory/folder where you will place the files
+        $target_file = $target_dir.basename($_FILES['picture']['name']);
+
+        $room->imageUpload($img_name,$target_dir,$target_file);
+
+        
     }
+    
 
 ?>

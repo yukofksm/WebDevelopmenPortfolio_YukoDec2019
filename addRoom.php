@@ -16,7 +16,7 @@
 <body>
     <div class="container w-75 mt-5">
     <h3 class="display-3 text-center">Add Rooms</h3>
-        <form action="action/roomAction.php" method="post">
+        <form action="action/roomAction.php" method="post" enctype="multipart/form-data">
             <div class="form-group mx-auto p-4 w-50">
 
             <div class="row">
@@ -27,19 +27,19 @@
                 <div class="col-md-7">
                     <label>Room Type<span style="color: red;"> *</span></label>
                     <select name="type" id="" class="form-control m-3" required>
-                    <option value="superior">Superior Room</option>
-                    <option value="deluxe">Deluxe Room</option>
-                    <option value="sign">Signature Room</option>
-                    <option value="couple">Couple Room</option>
+                    <option value="Superior">Superior Room</option>
+                    <option value="Deluxe">Deluxe Room</option>
+                    <option value="Signature">Signature Room</option>
+                    <option value="Couple">Couple Room</option>
                     </select>
                 </div>
             </div>
 
             <label>Room View<span style="color: red;"> *</span></label>
             <select name="view" id="" class="form-control m-3" required>
-                <option value="sea view">Sea View</option>
-                <option value="city view">City View</option>
-                <option value="pool view">Pool View</option>
+                <option value="Sea view">Sea View</option>
+                <option value="City view">City View</option>
+                <option value="Pool view">Pool View</option>
             </select>
              
                 
@@ -57,23 +57,9 @@
                 </div>
             </div>
             <label for="">Room Image</label>
-            <?php
-                include 'connection.php';
-                $loginid = $_GET['id'];
-
-                $sql = "SELECT * FROM user WHERE login_id = '$loginid'";
-                $result = $conn->query($sql);
-
-                if($result->num_rows > 0){
-                    while($row = $result->fetch_assoc()){
-                    $image = $row['user_pic'];
-
-                    echo "<img src='uploads/$image' width=50% height=100%>";
-                    }
-                }
+            <input type="file" name="picture" id="" role="button" class="">
             
-                echo "<br><br><a href='pictureUpload.php?id=".$_SESSION['loginid']."' class='btn btn-primary form-control w-50' role='button'><i class='fas fa-pencil-alt'></i>Edit Image</a>";
-            ?>    
+            
                 <!-- <label>Picture Update</label>
                 <input type="password" name="pword" class="form-control m-3" placeholder="  " style="border-top: none; border-right: none; border-left: none;"> -->
                 

@@ -2,8 +2,8 @@
     require_once 'class/room.php';
     $room = new Room();
     
-    $roomid = $_GET['id'];
-    $getSpecRoom = $room->getSpecRoom($roomid);
+    $id = $_GET['id'];
+    $getSpecRoom = $room->getSpecRoom($id);
 
 ?> 
 
@@ -36,14 +36,22 @@
                     <option value="<?php echo $getSpecRoom['room_type']?>" selected disabled>
                     
                     <?php echo $getSpecRoom['room_type']?> Room</option>
-                    <option value="superior">Superior Room</option>
-                    <option value="deluxe">Deluxe Room</option>
-                    <option value="sign">Signature Room</option>
-                    <option value="couple">Couple Room</option>
+                    <option value="Superior">Superior Room</option>
+                    <option value="Deluxe">Deluxe Room</option>
+                    <option value="Signature">Signature Room</option>
+                    <option value="Couple">Couple Room</option>
                     </select>
                 </div>
-
             </div>
+            <label>Room View<span style="color: red;"> *</span></label>
+            <select name="newView" id="" class="form-control m-3" required>
+                <option value="<?php echo $getSpecRoom['room_view']?>" selected disabled>
+                    
+                <?php echo $getSpecRoom['room_view']?> Room</option>
+                <option value="Sea view">Sea View</option>
+                <option value="City view">City View</option>
+                <option value="Pool view">Pool View</option>
+            </select>
                 
             <label>Room Price<span style="color: red;"> *</span></label>
             <input type="number" name="newPrice" value="<?php echo $getSpecRoom['room_price']?>" class="form-control m-3" placeholder="  <?php echo $getSpecRoom['room_price']?>" style="border-top: none; border-right: none; border-left: none;"required>
@@ -58,9 +66,8 @@
                     <input type="number" name="newKidsCap" value="<?php echo $getSpecRoom['cap_kids']?>" class="form-control m-3" placeholder="  <?php echo $getSpecRoom['cap_kids']?>" style="border-top: none; border-right: none; border-left: none;"required>
                 </div>
             </div>
-                                
-            <!-- <label>Picture Update</label>
-            <input type="password" name="pword" class="form-control m-3" placeholder="  " style="border-top: none; border-right: none; border-left: none;"> -->
+            <label>Picture Update</label>
+            <!-- <input type="password" name="pword" class="form-control m-3" placeholder="  " style="border-top: none; border-right: none; border-left: none;"> -->
             <input type="hidden" name="id" value="<?php echo $getSpecRoom['room_id']?>"><br>
 
             <div class="row">

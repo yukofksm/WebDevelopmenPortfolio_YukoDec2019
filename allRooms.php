@@ -25,13 +25,14 @@
                 <table class="table">
                     <thead>
                         <th>#</th>
-                        <th>Room Number</th>
-                        <th>Room Type</th>
-                        <th>Room View</th>
-                        <th>Room Price</th>
-                        <th>Adult Capacity</th>
-                        <th>Children Capacity</th>
-                        <th>Room Status</th>
+                        <th>Number</th>
+                        <th>Type</th>
+                        <th>View</th>
+                        <th>Price</th>
+                        <th>Adult</th>
+                        <th>Children</th>
+                        <th>Status</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </thead>
@@ -49,6 +50,7 @@
                                 <td>".$row['cap_adult']."</td>
                                 <td>".$row['cap_kids']."</td>
                                 <td>".$row['room_status']."</td>
+                                <td><a href='detailRoom.php?id=$id' class='btn btn-warning text-white btn-sm'>Detail</a></td>
                                 <td><a href='editRooms.php?id=$id' class='btn btn-info btn-sm'>EDIT</a></td>
                                 <td><a href='action/roomAction.php?actiontype=delete_room&room_id=$id' class='btn btn-danger btn-sm'>DELETE</a></td>
                             </tr>";
