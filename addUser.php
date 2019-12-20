@@ -13,6 +13,45 @@
     <script src="https://kit.fontawesome.com/d98ab22c54.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-white bg-secondary text-white">
+        <ul class="nav navbar-nav mr-auto pb-0 mb-0">
+            <li class="nav-item">
+                <a href="index.php" class="nav-link text-white pb-0 px-3"><p>HOME</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="allRooms.php" class="nav-link text-white pb-0 px-3"><p>    All Rooms</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="addRoom.php" class="nav-link text-white pb-0 px-3"><p>    Add Room</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="allUsers.php" class="nav-link text-white pb-0 px-3"><p>    All Users</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="register/register.php" class="nav-link text-white pb-0 px-3"><p>    Add User</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="allReservation.php" class="nav-link text-white pb-0 px-3"><p>    All Reservation</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="blog.php" class="nav-link text-white pb-0 px-3"><p>    Blog</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="about.php" class="nav-link text-white pb-0 px-3"><p>    About</p></a>
+            </li>
+        </ul>
+        <ul  class="nav navbar-nav float-right">
+            <li>
+                <?php
+                    $loginid = $_SESSION['userid'];
+                    echo "<h6><i class='fas fa-user'></i><a href='menuAdmin.php?id=".$loginid."' class='nav-link text-white d-inline pb-0'>Welcome! ".$_SESSION['fname']."</a></h6>";
+                ?>
+            </li>
+            <li>
+                <h6><i class="fas fa-user-times"></i><a href="logout.php" class="nav-link text-white d-inline pb-0">Logout</a></h6>
+            </li>
+        </ul>
+    </nav>
     <div class="container w-75 mt-5">
     <h3 class="display-3 text-center">Enter Your Details</h3>
         <form action="action/userAction.php" method="post">

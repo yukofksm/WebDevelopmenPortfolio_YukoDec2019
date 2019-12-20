@@ -27,8 +27,13 @@
         $newKidsCap= $_POST['newKidsCap'];
         $newStatus = $_POST['newStatus'];
         $roomID= $_POST['id'];
+        
+        $picture= $_POST['oldPicture'];
+        $img_name = $_FILES['picture']['name'];
 
-        $room->editRoom($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$newStatus,$roomID);
+        
+
+        $room->editRoom($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$picture,$newStatus,$roomID);
 
 
     }elseif ($_GET['actiontype']=='delete_room') {

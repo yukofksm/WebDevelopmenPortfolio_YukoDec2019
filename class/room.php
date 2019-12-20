@@ -6,12 +6,17 @@
 
         //ROOMの追加
         public function addRoom($number,$type,$view,$price,$cap_adult,$cap_kids,$img_name){
-            $target_dir = "img/rooms"; 
+
+            $target_dir = "../img/rooms/"; 
             $target_file = $target_dir.basename($_FILES['picture']['name']);
 
             $add = "INSERT INTO `room`(room_num,room_type,room_view,room_price,cap_adult,cap_kids,room_img) VALUES('$number','$type','$view','$price','$cap_adult','$cap_kids','$img_name')";
+
+            // echo $add;
+
             if($this->conn->query($add)){
-                // echo "OK";
+            //     // echo "OK";
+                move_uploaded_file($_FILES['picture']['tmp_name'],$target_file);
                 header("Location: ../allRooms.php");
             }else{
                 echo "ERROR".$this->conn->error;
@@ -56,14 +61,18 @@
         }
 
         //UPDATE ROOM
-        public function editRoom($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$newStatus,$roomID){
-            $sql = "UPDATE room SET room_num='$newNumber', room_type='$newType',room_view='$newView',room_price='$newPrice',cap_adult='$newAdultCap',cap_kids='$newKidsCap',room_status='$newStatus'WHERE room_id='$roomID'";
+        public function editRoom($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$picture,$newStatus,$roomID){
+            // $target_dir = "../img/rooms/"; 
+            // $target_file = $target_dir.basename($_FILES['picture']['name']);
+
+            $sql = "UPDATE room SET room_num='$newNumber', room_type='$newType',room_view='$newView',room_price='$newPrice',cap_adult='$newAdultCap',cap_kids='$newKidsCap',room_img='$picture',room_status='$newStatus'WHERE room_id='$roomID'";
 
             $result = $this->conn->query($sql);
 
             if($result==false){
                 die("Cannot Update:".$this->conn->error);
             }else{
+                move_uploaded_file($_FILES['picture']['tmp_name'],$target_file);
                 header("Location: ../allRooms.php");
             }
         }
@@ -102,10 +111,23 @@
                 move_uploaded_file($_FILES['picture']['tmp_name'],$target_file);
                 //move_upload_file($filename,$destination)
 
-                header("..allRooms.php");
+                header("../allRooms.php");
             }else{
                 echo "ERROR IN UPLOADING".$conn->error;
             }
+        }
+
+        //ALL 予約見るやつ
+        public function getReservation(){
+            $sql = "SELECT * FROM book INNER JOIN user ON book.user_id = user.user_id INNER JOIN room ON book.room_id = room.room_id";
+            $result = $this->conn->query($sql);
+
+            $rows = array();
+
+            while($row = $result->fetch_assoc()){
+                $rows[] = $row;
+            }
+            return $rows;
         }
 
         public function checkDate($checkIn,$checkOut,$roomType){

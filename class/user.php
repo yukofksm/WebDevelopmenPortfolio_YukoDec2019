@@ -85,5 +85,19 @@
                 echo "ERROR IN DELETING:" .$this->conn->error;
             }
         }
+
+        //USER DETAIL
+        public function userDetail($id){
+            $sql = "SELECT * FROM user WHERE user_id = '$id'";
+            $result = $this->conn->query($sql);
+
+            if($result == false){
+                die("No record ".$this->conn->error);
+            }else{
+                return $result->fetch_assoc();
+            }
+        }
+
+        
     }
 ?>
