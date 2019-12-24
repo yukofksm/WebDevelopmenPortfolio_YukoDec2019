@@ -226,7 +226,7 @@
                             <li>3 Adults & 2 Children size</li>
                             <li>Sea view side</li>
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="detailRoomU.php?id=1" class="book_now">book now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-4">
@@ -241,7 +241,7 @@
                             <li>3 Adults & 2 Children size</li>
                             <li>Sea view side</li>
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="detailRoomU.php?id=2" class="book_now">book now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-4">
@@ -256,7 +256,7 @@
                             <li>3 Adults & 2 Children size</li>
                             <li>Sea view side</li>
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="detailRoomU.php?id=3" class="book_now">book now</a>
                     </div>
                 </div>
             </div>

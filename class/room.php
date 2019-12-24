@@ -47,7 +47,6 @@
             }
         }
 
-
         //EDIT ROOMで表示する用
         public function getSpecRoom($id){
             $sql = "SELECT * FROM room WHERE room_id = '$id'";
@@ -60,12 +59,31 @@
             }
         }
 
-        //UPDATE ROOM
-        public function editRoom($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$picture,$newStatus,$roomID){
+        // UPDATE ROOM
+        public function editRoom1($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$picture,$newStatus,$roomID){
             // $target_dir = "../img/rooms/"; 
             // $target_file = $target_dir.basename($_FILES['picture']['name']);
+    
+            $sql = "UPDATE room 
+                SET room_num='$newNumber', room_type='$newType',room_view='$newView',room_price='$newPrice',cap_adult='$newAdultCap',cap_kids='$newKidsCap',room_img='$picture',room_status='$newStatus'
+                WHERE room_id='$roomID'";
 
-            $sql = "UPDATE room SET room_num='$newNumber', room_type='$newType',room_view='$newView',room_price='$newPrice',cap_adult='$newAdultCap',cap_kids='$newKidsCap',room_img='$picture',room_status='$newStatus'WHERE room_id='$roomID'";
+            $result = $this->conn->query($sql);
+
+            if($result==false){
+                die("Cannot Update:".$this->conn->error);
+            }else{
+                header("Location: ../allRooms.php");
+            }
+        }
+
+        public function editRoom2($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$img_name,$newStatus,$roomID){
+            $target_dir = "../img/rooms/"; 
+            $target_file = $target_dir.basename($_FILES['picture']['name']);
+
+            $sql = "UPDATE room 
+                SET room_num='$newNumber', room_type='$newType',room_view='$newView',room_price='$newPrice',cap_adult='$newAdultCap',cap_kids='$newKidsCap',room_img='$img_name',room_status='$newStatus' 
+                WHERE room_id='$roomID'";
 
             $result = $this->conn->query($sql);
 
@@ -89,17 +107,6 @@
             }
         }
 
-        //Final Confimationで表示するやつ
-        public function finalDisplay($id,$type,$view,$price,$adult,$kids){
-            $sql = "SELECT * FROM room WHERE room_id = '$roomid'";
-            $result = $this->conn->query($sql);
-
-            if($result == false){
-                die("No record ".$this->conn->error);
-            }else{
-                return $result->fetch_assoc();
-            }
-        }
 
         //IMAGE upload
         public function imageUpload($img_name,$target_dir,$target_file){
@@ -130,9 +137,10 @@
             return $rows;
         }
 
-        public function checkDate($checkIn,$checkOut,$roomType){
+        //BOOKする時CHECKIN、OUTの日のやつ
+        public function checkDate($checkIn,$checkOut,$id){
            
-            $sql = "SELECT * FROM `book` INNER JOIN `room` ON book.room_id = room.room_id WHERE book.checkin <= '$checkOut' AND book.checkout >= '$checkIn' AND room.room_type = '$roomType'"; 
+            $sql = "SELECT * FROM `book` INNER JOIN `room` ON book.room_id = room.room_id WHERE book.checkin <= '$checkOut' AND book.checkout >= '$checkIn' AND room.room_id = '$id'"; 
 
             $result = $this->conn->query($sql);
 
@@ -140,7 +148,9 @@
                 echo "NG";
             }else{
                 // echo "OK";
-                $this->displayAvailableRoom($checkIn, $checkOut, $roomType);
+                header("../bookRoom2.php?id=$id");
+
+                // $this->displayAvailableRoom($checkIn, $checkOut, $roomID);
                 // $check = "SELECT * FROM room";
 
                 // $result = $this->conn->query($check);

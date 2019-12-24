@@ -30,6 +30,8 @@
                 $_SESSION['email'] = $row['email']; 
                 $_SESSION['gender'] = $row['gender']; 
 
+                $_SESSION['login'] = "logined";
+
                 return $row['status'];
             }else{
                 return false;

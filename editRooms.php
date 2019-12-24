@@ -16,6 +16,7 @@
     <title>EDIT ROOM</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/d98ab22c54.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-white bg-secondary text-white">
@@ -60,7 +61,7 @@
 
 <div class="container w-75 mt-5">
     <h3 class="display-3 text-center">Edit Room</h3>
-    <form action="action/roomAction.php" method="post">
+    <form action="action/roomAction.php" method="post"enctype="multipart/form-data">
         <div class="form-group mx-auto p-4 w-50">
 
             <div class="row">
@@ -104,8 +105,8 @@
                 </div>
             </div>
             <label for="">Room Image</label>
-            <input type="file" name="newPicture" id="files" value="<?php echo $getSpecRoom['room_img']?>" class="" >
-            <input type="hidden" name="picture" id="files" value="<?php echo $getSpecRoom['room_img']?>" class="" >
+            <input type="file" name="picture" id="files" >
+            <input type="hidden" name="oldPicture" value="<?php echo $getSpecRoom['room_img']?>" id="files" >
             
 
 
@@ -125,7 +126,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for=""></label>
-                    <input type="submit" name="edit" value="EDIT ROOM" class="btn btn-dark btn-lg text-white form-control m-3 my-4 rounded-pill">
+                    <input id="submitnow" type="submit" name="edit" value="EDIT ROOM" class="btn btn-dark btn-lg text-white form-control m-3 my-4 rounded-pill">
                 </div>
             </div>   
         </div>           
@@ -133,3 +134,5 @@
 </div>
 </body>
 </html>
+
+

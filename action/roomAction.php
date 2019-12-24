@@ -31,9 +31,11 @@
         $picture= $_POST['oldPicture'];
         $img_name = $_FILES['picture']['name'];
 
-        
-
-        $room->editRoom($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$picture,$newStatus,$roomID);
+        if(empty($img_name)){
+            $room->editRoom1($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$picture,$newStatus,$roomID);
+        }else{
+            $room->editRoom2($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$img_name,$newStatus,$roomID);
+        }
 
 
     }elseif ($_GET['actiontype']=='delete_room') {
@@ -42,32 +44,40 @@
         $room->deleteRoom($id);
 
     //bookRoom.phpからFinal Confirmationへいくやつ
-    }elseif(isset($_POST['book'])){
-        $id = $_POST['id'] = $_SESSION['final_id'];
-        $type = $_POST['type'] = $_SESSION['final_type'];
-        $view = $_POST['view'] = $_SESSION['final_view'];
-        $price = $_POST['price'] = $_SESSION['final_price'];
-        $adult = $_POST['adult'] = $_SESSION['final_adult'];
-        $kids = $_POST['kids'] = $_SESSION['final_kids'];
+    }elseif(isset($_POST['book'])){ 
+        
+        $id = $_POST['id'];
+        $_SESSION['final_adult']= $_POST['adult'];
+        $_SESSION['final_kids']= $_POST['kids'];
 
-        $room->finalDisplay($id,$type,$view,$price,$adult,$kids);
+        
+        if($_SESSION['login'] == "logined"){
+            header("Location: ../bookRoom2.php?id=$id");
+        }else {
+            echo "NG";
+        }
+    }elseif(isset($_POST['book2'])){
+
+
 
     //checkからavailableRoomにいくやつ    
     }elseif(isset($_POST['check'])){
         
-        $roomType = $_POST['roomType'];
+        $id = $_POST['id'];
         
         $checkIn = date_create($_POST['checkIn']);
         $checkIn = date_format($checkIn, 'Y-m-d');
         $checkOut = date_create($_POST['checkOut']);
         $checkOut = date_format($checkOut, 'Y-m-d');
+
+        $checkIn = $_SESSION['checkin'];
+        $checkIn = $_SESSION['checkout'];
         
-        $room->checkDate($checkIn,$checkOut,$roomType);
+        $room->checkDate($checkIn,$checkOut,$id);
         // $display = $room->displayAvailableRoom($result);
 
-        if($room->checkDate($checkIn,$checkOut,$roomType)){
-            header('Location: ../availableRoom.php');
-        }
+        // if($room->checkDate($checkIn,$checkOut,$roomType)){
+        // }
 
     //image upload
     }elseif(isset($_POST['upload'])) {
