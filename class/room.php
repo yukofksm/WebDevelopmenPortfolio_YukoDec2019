@@ -118,7 +118,7 @@
                 move_uploaded_file($_FILES['picture']['tmp_name'],$target_file);
                 //move_upload_file($filename,$destination)
 
-                header("../allRooms.php");
+                header("Location: ../allRooms.php");
             }else{
                 echo "ERROR IN UPLOADING".$conn->error;
             }
@@ -148,7 +148,7 @@
                 echo "NG";
             }else{
                 // echo "OK";
-                header("../bookRoom2.php?id=$id");
+                header("Location: ../bookRoom2.php?id=$id");
 
                 // $this->displayAvailableRoom($checkIn, $checkOut, $roomID);
                 // $check = "SELECT * FROM room";
@@ -180,6 +180,32 @@
             }
             return $rows;
 
+        }
+
+        public function finalBook($checkIn,$checkOut,$adult,$kids,$roomID,$userID,$fname){
+
+            $add = "INSERT INTO `book`(checkin,checkout,adult,kids,room_id,user_id,firstname) VALUES('$checkIn','$checkOut','$adult','$kids','$roomID','$userID','$fname')";
+
+            // echo $add;
+
+            if($this->conn->query($add)){
+                echo "SUCCESS!!";
+                // header("Location: ../index.php");
+            }else{
+                echo "ERROR".$this->conn->error;
+            }
+        }
+
+        //EDIT RESERVATIONで表示するやつ
+        public function getSpecReservation($bookid){
+            $sql = "SELECT * FROM book WHERE book_id = '$bookid'";
+            $result = $this->conn->query($sql);
+
+            if($result == false){
+                die("No record ".$this->conn->error);
+            }else{
+                return $result->fetch_assoc();
+            }
         }
 
 

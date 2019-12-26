@@ -23,7 +23,7 @@
 <div class="container w-50 mt-5">
     <div class="card">
     <div class="card-header">
-        <h3 class="display-3">Check </h3>
+        <h3 class="display-3">Final Comfimation</h3>
     </div>
     <div class="card-body">
     <form action="action/roomAction.php" method="post">
@@ -38,12 +38,23 @@
                     
                     <h5>Room Price: </h5>
                     <p>$ <?php echo $getSpecRoom['room_price']?>-</p>
+
+                    <h5>Check in Date: </h5>
+                    <p><?php echo $_SESSION['checkin']?></p>
+
+                    <h5>Check out Date: </h5>
+                    <p><?php echo $_SESSION['checkout']?></p>
                     
-                    <h5 for="">Adult:</h5>
-                    <p><?php echo $_SESSION['final_adult']?></p>
-                
-                    <h5 for="">Children:</h5>
-                    <p><?php echo $_SESSION['final_kids']?></p> 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Adult:  </p>
+                            <p><?php echo $_SESSION['final_adult']?></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Children:</p>
+                            <p><?php echo $_SESSION['final_kids']?></p> 
+                        </div>
+                    </div>
                 </div> 
 
                 <div class="col-md-6">
@@ -61,19 +72,21 @@
                 </div>
             </div>
 
-            <input type="hidden" name="id" value="<?php echo $getSpecRoom['room_id']?>">
-            <input type="hidden" name="type" value="<?php echo $getSpecRoom['room_type']?>">
-            <input type="hidden" name="view" value="<?php echo $getSpecRoom['room_view']?>">
-            <input type="hidden" name="price" value="<?php echo $getSpecRoom['room_price']?>">
+            <input type="hidden" name="checkin" value="<?php echo $_SESSION['checkin']?>">
+            <input type="hidden" name="checkout" value="<?php echo $_SESSION['checkout']?>">
             <input type="hidden" name="final_adult" value="<?php echo $_SESSION['final_adult']?>">
             <input type="hidden" name="final_kids" value="<?php echo $_SESSION['final_kids']?>">
+            <input type="hidden" name="id" value="<?php echo $getSpecRoom['room_id']?>">
+            <input type="hidden" name="userID" value="<?php echo $_SESSION['userid']?>">
+            <input type="hidden" name="fname" value="<?php echo $_SESSION['fname']?>">
+
 
             <div class="row">
                 <div class="col-md-6">
                 </div>
                 <div class="col-md-6">
                     <label for=""></label>
-                    <input type="submit" name="book2" value="BOOK" class="btn btn-dark btn-lg text-white form-control rounded-pill">
+                    <input type="submit" name="finalBook" value="SUBMIT" class="btn btn-dark btn-lg text-white form-control rounded-pill">
                 </div>
             </div>   
         </div>           

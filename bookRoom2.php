@@ -31,22 +31,23 @@
         
             <label>Room View:</label>
             <h4><?php echo $getSpecRoom['room_view']?> Room</h4>
-               
-                
-            <label>Room Price: </label>
-            <h4>$ <?php echo $getSpecRoom['room_price']?>-</h4>
                 
             <div class="row">
                 <div class="col-md-6">
+                <label>Check In Date: </label>
                 <h4><?php echo $_SESSION['checkin']?></h4>
                 </div>
                 <div class="col-md-6">
+                <label>Check Out Date: </label>
                 <h4><?php echo $_SESSION['checkout']?></h4>
                 </div>
             </div>
             <input type="hidden" name="id" value="<?php echo $getSpecRoom['room_id']?>">
 
-            <!-- <div class="row">   
+            <label>Room Price: </label>
+            <h4>$ <?php echo $getSpecRoom['room_price']*5 ?></h4>
+
+            <div class="row">   
                 <div class="col-xl-6">
                     <label for="">Adult</label>
                     <select class="form-select wide form-control" id="default-select" name="adult">
@@ -61,13 +62,14 @@
                     <label for="">Children</label>
                     <select class="form-select wide form-control" id="default-select" name="kids">
                         <option data-display="Children"></option>
+                        <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
                 </div>
-            </div>  -->
+            </div> 
                                 
             <!-- <label>Picture Update</label>
             <input type="password" name="pword" class="form-control m-3" placeholder="  " style="border-top: none; border-right: none; border-left: none;"> -->
@@ -78,7 +80,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for=""></label>
-                    <input type="submit" name="check" value="Check Date" class="btn btn-dark btn-lg text-white form-control m-3 my-4 rounded-pill">
+                    <input type="submit" name="book" value="Book" class="btn btn-dark btn-lg text-white form-control m-3 my-4 rounded-pill">
                 </div>
             </div>   
         </div>           
