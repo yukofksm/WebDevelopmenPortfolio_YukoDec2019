@@ -52,12 +52,16 @@
         $checkOut = date_create($_POST['checkOut']);
         $checkOut = date_format($checkOut, 'Y-m-d');
 
+        $room_price = $_POST['room_price'];
+
         $dayCount = ((strtotime($checkOut) - strtotime($checkIn)) / 86400);
+        $totalPrice = $room_price * $dayCount;
 
         $_SESSION['checkin'] = $checkIn;
         $_SESSION['checkout'] = $checkOut;
+        $_SESSION['total'] = $totalPrice;
         
-        $room->checkDate($checkIn,$checkOut,$id,$day);
+        $room->checkDate($checkIn,$checkOut,$id);
         // $display = $room->displayAvailableRoom($result);
 
         // if($room->checkDate($checkIn,$checkOut,$roomType)){

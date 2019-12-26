@@ -48,7 +48,7 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="active" href="index.php">home</a></li>
-                                        <li><a href="rooms.php">rooms</a></li>
+                                        <li><a href="allRoomsU.php">rooms</a></li>
                                         <li><a href="about.php">About</a></li>
                                         <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">

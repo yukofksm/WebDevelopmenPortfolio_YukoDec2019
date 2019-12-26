@@ -43,7 +43,7 @@
                               <nav>
                                   <ul id="navigation">
                                       <li><a href="index.php">home</a></li>
-                                      <li><a href="rooms.php">rooms</a></li>
+                                      <li><a href="allRoomsU.php">rooms</a></li>
                                       <li><a href="about.php">About</a></li>
                                       <li><a class="active" href="#">blog <i class="ti-angle-down"></i></a>
                                           <ul class="submenu">
@@ -71,23 +71,29 @@
                       <div class="col-xl-5 col-lg-4 d-none d-lg-block">
                           <div class="book_room">
                               <div class="socail_links">
-                                  <ul>
-                                      <li>
-                                          <a href="#">
-                                              <i class="fa fa-facebook-square"></i>
-                                          </a>
-                                      </li>
-                                      <li>
-                                          <a href="#">
-                                              <i class="fa fa-twitter"></i>
-                                          </a>
-                                      </li>
-                                      <li>
-                                          <a href="#">
-                                              <i class="fa fa-instagram"></i>
-                                          </a>
-                                      </li>
-                                  </ul>
+                              <ul>
+                                        <li>
+                                        <a href=""></a><span style="color: #FFFFFF; opacity: 75%;"><?php echo $_SESSION['fname'];?></span>
+                                            <a href="login/login2.php">
+                                                <i class="fas fa-sign-in-alt"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fab fa-facebook-square"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fab fa-twitter-square"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fab fa-instagram"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                               </div>
                               <div class="book_btn d-none d-lg-block">
                                     <a class="popup-with-form" href="#test-form">Book A Room</a>
