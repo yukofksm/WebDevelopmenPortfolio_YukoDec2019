@@ -78,7 +78,7 @@
                                 <div class="socail_links">
                                     <ul>
                                         <li>
-                                        <span style="color: #FFFFFF; opacity: 75%;"><?php echo $_SESSION['fname'];?></span>
+                                        <a href=""></a><span style="color: #FFFFFF; opacity: 75%;"><?php echo $_SESSION['fname'];?></span>
                                             <a href="login/login2.php">
                                                 <i class="fas fa-sign-in-alt"></i>
                                             </a>
@@ -226,7 +226,7 @@
                             <li>3 Adults & 2 Children size</li>
                             <li>Sea view side</li>
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="detailRoomU.php?id=1" class="book_now">book now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-4">
@@ -241,7 +241,7 @@
                             <li>3 Adults & 2 Children size</li>
                             <li>Sea view side</li>
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="detailRoomU.php?id=2" class="book_now">book now</a>
                     </div>
                 </div>
                 <div class="col-xl-4 col-md-4">
@@ -256,7 +256,7 @@
                             <li>3 Adults & 2 Children size</li>
                             <li>Sea view side</li>
                         </ul>
-                        <a href="#" class="book_now">book now</a>
+                        <a href="detailRoomU.php?id=3" class="book_now">book now</a>
                     </div>
                 </div>
             </div>
@@ -336,7 +336,7 @@
             </div>
             <div class="single_rooms">
                 <div class="room_thumb">
-                    <img src="img/rooms/2.png" alt="">
+                    <img src="img/rooms/3.png" alt="">
                     <div class="room_heading d-flex justify-content-between align-items-center">
                         <div class="room_heading_inner">
                             <span>From $250/night</span>

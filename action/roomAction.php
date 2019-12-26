@@ -27,55 +27,67 @@
         $newKidsCap= $_POST['newKidsCap'];
         $newStatus = $_POST['newStatus'];
         $roomID= $_POST['id'];
+        
+        $picture= $_POST['oldPicture'];
+        $img_name = $_FILES['picture']['name'];
 
-        $room->editRoom($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$newStatus,$roomID);
-
+        if(empty($img_name)){
+            $room->editRoom1($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$picture,$newStatus,$roomID);
+        }else{
+            $room->editRoom2($newNumber,$newType,$newView,$newPrice,$newAdultCap,$newKidsCap,$img_name,$newStatus,$roomID);
+        }
 
     }elseif ($_GET['actiontype']=='delete_room') {
         $id = $_GET['room_id'];
 
         $room->deleteRoom($id);
 
-    //bookRoom.phpからFinal Confirmationへいくやつ
-    }elseif(isset($_POST['book'])){
-        $id = $_POST['id'] = $_SESSION['final_id'];
-        $type = $_POST['type'] = $_SESSION['final_type'];
-        $view = $_POST['view'] = $_SESSION['final_view'];
-        $price = $_POST['price'] = $_SESSION['final_price'];
-        $adult = $_POST['adult'] = $_SESSION['final_adult'];
-        $kids = $_POST['kids'] = $_SESSION['final_kids'];
-
-        $room->finalDisplay($id,$type,$view,$price,$adult,$kids);
-
-    //checkからavailableRoomにいくやつ    
+    //Date 空いてるか確認するやつ    
     }elseif(isset($_POST['check'])){
         
-        $roomType = $_POST['roomType'];
+        $id = $_POST['id'];
         
         $checkIn = date_create($_POST['checkIn']);
         $checkIn = date_format($checkIn, 'Y-m-d');
         $checkOut = date_create($_POST['checkOut']);
         $checkOut = date_format($checkOut, 'Y-m-d');
+
+        $dayCount = ((strtotime($checkOut) - strtotime($checkIn)) / 86400);
+
+        $_SESSION['checkin'] = $checkIn;
+        $_SESSION['checkout'] = $checkOut;
         
-        $room->checkDate($checkIn,$checkOut,$roomType);
+        $room->checkDate($checkIn,$checkOut,$id,$day);
         // $display = $room->displayAvailableRoom($result);
 
-        if($room->checkDate($checkIn,$checkOut,$roomType)){
-            header('Location: ../availableRoom.php');
-        }
+        // if($room->checkDate($checkIn,$checkOut,$roomType)){
+        // }
 
-    //image upload
-    }elseif(isset($_POST['upload'])) {
-        $img_name = $_FILES['picture']['name'];
-        //['picture'] = name of the element inside the form
-        //['name'] = any name automatically created by the computer; refers to attribute df the element
-
-        $target_dir = "img/"; //the directory/folder where you will place the files
-        $target_file = $target_dir.basename($_FILES['picture']['name']);
-
-        $room->imageUpload($img_name,$target_dir,$target_file);
+     //bookRoom.phpからFinal Confirmationへいくやつ
+    }elseif(isset($_POST['book'])){ 
+        
+        $id = $_POST['id'];
+        $_SESSION['final_adult']= $_POST['adult'];
+        $_SESSION['final_kids']= $_POST['kids'];
 
         
+        if($_SESSION['login'] == "logined"){
+            header("Location: ../finalComfimation.php?id=$id");
+        }else {
+            echo "NG";
+        }
+
+    }elseif(isset($_POST['finalBook'])){
+        
+        $checkIn = $_POST['checkin'];
+        $checkOut = $_POST['checkout'];
+        $adult = $_POST['final_adult'];
+        $kids = $_POST['final_kids'];
+        $roomID = $_POST['id'];
+        $userID = $_POST['userID'];
+        $fname = $_POST['fname'];
+
+        $room->finalBook($checkIn,$checkOut,$adult,$kids,$roomID,$userID,$fname);
     }
     
 

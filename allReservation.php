@@ -1,25 +1,21 @@
 <?php
     require_once 'class/room.php';
     $room = new Room();
-
-    $id = $_GET['id'];
-    $result = $room->roomDetail($id);
-    
+    $result = $room->getReservation();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Room Detail</title>
+    <title>ALL RESERVASION</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/d98ab22c54.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 </head>
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-white bg-secondary text-white">
+<nav class="navbar navbar-expand-lg navbar-white bg-secondary text-white">
         <ul class="nav navbar-nav mr-auto pb-0 mb-0">
             <li class="nav-item">
                 <a href="index.php" class="nav-link text-white pb-0 px-3"><p>HOME</p></a>
@@ -59,33 +55,53 @@
         </ul>
     </nav>
 
-    
-    <div class="container w-75 mx-auto mt-5">
+
+    <div class="container mt-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="display-4 ml-3">Room Detail</h3>
+                <h3 class="display-4">All Reservasion</h3>
+                <!-- <p  class="btn text-dark"><a href="addRoom.php">add room</a></p>  -->
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-8">
-                        <img src="img/rooms/<?php 
-                        echo $result['room_img']?>" alt="" style="width: 100%; height: 420px;">
-                        
-                    </div>
-                    <div class="col-md-4">
-                        <p><i class="fas fa-key"></i>  # <?php echo $result['room_num']?></p><br>
-                        <p><i class="fas fa-hotel"></i>  <?php echo $result['room_type']?> room</p><br>
-                        <p><i class="far fa-eye"></i>  <?php echo $result['room_view']?></p><br>
-                        <p><i class="fas fa-hand-holding-usd"></i>$<?php echo $result['room_price']?>-</p><br>
-                        <p><i class="fas fa-users"></i>  Capacity(Adult):    <?php echo $result['cap_adult']?></p><br>
-                        <p><i class="fas fa-child"></i>  Capacity(Children):   <?php echo $result['cap_kids']?></p><br>
-                        <?php
-                            echo "<a href='editRooms.php?id=$id><i class='fas fa-wrench'></i>  EDIT</a>";
-                        ?>
-                    </div>
-                </div>
+                <table class="table">
+                    <thead>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Guest Name</th>
+                        <th>Room Number</th>
+                        <th>Room Type</th>
+                        <th>Adult</th>
+                        <th>Children</th>
+                        <th>Price</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                    <?php
+                        foreach ($result as $row) {
+                            $roomid = $row['room_id'];
+                            $userid = $row['user_id'];
+                            $bookid = $row['book_id'];
+                            echo "
+                            <tr>
+                                <td>".$row['checkin']."</td>
+                                <td>".$row['checkout']."</td>
+                                <td><a href='detailUser.php?id=$userid'><i class='fas fa-user'></i></a> ".$row['firstname']." ".$row['lastname']."</td>
+                                <td class='text-center'>".$row['room_num']."   <a href='detailRoom.php?id=$roomid'><i class='fas fa-door-open'></i></a></td>
+                                <td>".$row['room_type']." Room</td>
+                                <td>".$row['adult']."</td>
+                                <td>".$row['kids']."</td>
+                                <td>$".$row['room_price']."</td>
+                                <td><td><a href='editBook.php?id=$bookid' class='btn btn-info btn-sm'>EDIT</a></td></td>
+                                
+                            </tr>";
+                        }
+                    ?>
+                    <!-- <td><a href='editRooms.php?id=$id' class='btn btn-info btn-sm'>EDIT</a></td>
+                    <td><a href='action/roomAction.php?actiontype=delete_room&room_id=$id' class='btn btn-danger btn-sm'>DELETE</a></td> -->
+                       
+                    </tbody>
+                </table>
             </div>
-        
         </div>
     </div>
     

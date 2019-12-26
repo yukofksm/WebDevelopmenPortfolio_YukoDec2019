@@ -4,6 +4,7 @@
 
     $id = $_GET['id'];
     $result = $room->roomDetail($id);
+    session_start();
     
 ?>
 <!DOCTYPE html>
@@ -27,18 +28,18 @@
             <li class="nav-item">
                 <a href="allRooms.php" class="nav-link text-white pb-0 px-3"><p>    All Rooms</p></a>
             </li>
-            <li class="nav-item">
-                <a href="addRoom.php" class="nav-link text-white pb-0 px-3"><p>    Add Room</p></a>
-            </li>
-            <li class="nav-item">
-                <a href="allUsers.php" class="nav-link text-white pb-0 px-3"><p>    All Users</p></a>
-            </li>
-            <li class="nav-item">
-                <a href="register/register.php" class="nav-link text-white pb-0 px-3"><p>    Add User</p></a>
-            </li>
-            <li class="nav-item">
-                <a href="allReservation.php" class="nav-link text-white pb-0 px-3"><p>    All Reservation</p></a>
-            </li>
+            <!-- <li class="nav-item"> -->
+                <!-- <a href="addRoom.php" class="nav-link text-white pb-0 px-3"><p>    Add Room</p></a> -->
+            <!-- </li> -->
+            <!-- <li class="nav-item"> -->
+                <!-- <a href="allUsers.php" class="nav-link text-white pb-0 px-3"><p>    All Users</p></a> -->
+            <!-- </li>
+            <li class="nav-item"> -->
+                <!-- <a href="register/register.php" class="nav-link text-white pb-0 px-3"><p>    Add User</p></a> -->
+            <!-- </li>
+            <li class="nav-item"> -->
+                <!-- <a href="allReservation.php" class="nav-link text-white pb-0 px-3"><p>    All Reservation</p></a> -->
+            <!-- </li> -->
             <li class="nav-item">
                 <a href="blog.php" class="nav-link text-white pb-0 px-3"><p>    Blog</p></a>
             </li>
@@ -46,17 +47,17 @@
                 <a href="about.php" class="nav-link text-white pb-0 px-3"><p>    About</p></a>
             </li>
         </ul>
-        <ul  class="nav navbar-nav float-right">
+        <!-- <ul  class="nav navbar-nav float-right">
             <li>
                 <?php
-                    $loginid = $_SESSION['userid'];
-                    echo "<h6><i class='fas fa-user'></i><a href='menuAdmin.php?id=".$loginid."' class='nav-link text-white d-inline pb-0'>Welcome! ".$_SESSION['fname']."</a></h6>";
+                    // $loginid = $_SESSION['userid'];
+                    // echo "<h6><i class='fas fa-user'></i><a href='menuAdmin.php?id=".$loginid."' class='nav-link text-white d-inline pb-0'>Welcome! ".$_SESSION['fname']."</a></h6>";
                 ?>
             </li>
             <li>
                 <h6><i class="fas fa-user-times"></i><a href="logout.php" class="nav-link text-white d-inline pb-0">Logout</a></h6>
             </li>
-        </ul>
+        </ul> -->
     </nav>
 
     
@@ -80,7 +81,7 @@
                         <p><i class="fas fa-users"></i>  Capacity(Adult):    <?php echo $result['cap_adult']?></p><br>
                         <p><i class="fas fa-child"></i>  Capacity(Children):   <?php echo $result['cap_kids']?></p><br>
                         <?php
-                            echo "<a href='editRooms.php?id=$id><i class='fas fa-wrench'></i>  EDIT</a>";
+                            echo "<a href='bookRoom.php?id=$id'><i class='fas fa-wrench'></i>  BOOK NOW</a>";
                         ?>
                     </div>
                 </div>
