@@ -1,6 +1,5 @@
 <?php
     require_once 'database.php';
-    session_start();
 
     class Room extends Database{
 
@@ -163,8 +162,8 @@
                 // }
                 // return $rows;
             }
-            
         }
+
 
         public function displayAvailableRoom($checkIn, $checkOut, $roomType){
 
@@ -206,6 +205,18 @@
             }else{
                 return $result->fetch_assoc();
             }
+        }
+
+        public function superiorRooms(){
+            $sql = "SELECT * FROM room WHERE room_type == 'Superior'";
+            $result = $this->conn->query($sql);
+
+            $rows = array();
+
+            while($row = $result->fetch_assoc()){
+                $rows[] = $row;
+            }
+            return $rows;
         }
 
 

@@ -1,15 +1,21 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
+<?php
+    require_once 'class/room.php';
+    $room = new Room();
+    $result = $room->getRooms();
+?>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Montana</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ALL ROOMS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/d98ab22c54.js" crossorigin="anonymous"></script>
 
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+     <!-- <link rel="manifest" href="site.webmanifest"> -->
+     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -26,11 +32,7 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
-
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
 
     <!-- header-start -->
     <header>
@@ -43,8 +45,8 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a href="index.php">home</a></li>
-                                        <li><a href="allRoomsU.php">rooms</a></li>
-                                        <li><a class="active" href="about.php">About</a></li>
+                                        <li><a class="active" href="allRoomsU.php">rooms</a></li>
+                                        <li><a href="about.php">About</a></li>
                                         <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="blog.php">blog</a></li>
@@ -110,80 +112,115 @@
     </header>
     <!-- header-end -->
 
-    <!-- bradcam_area_start -->
-    <div class="bradcam_area breadcam_bg">
-        <h3>About Montana</h3>
+      <!-- bradcam_area_start -->
+      <div class="bradcam_area breadcam_bg_1">
+        <h3>All Rooms</h3>
     </div>
     <!-- bradcam_area_end -->
 
-    <!-- about_area_start -->
-    <div class="about_area">
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <th>Number</th>
+                        <th>Type</th>
+                        <th>View</th>
+                        <th>Price</th>
+                        <th>Adult</th>
+                        <th>Children</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                    <?php
+                        foreach ($result as $row) {
+                            $id = $row['room_id'];
+                            echo "
+                            <tr>
+                                <td class='text-center'>".$row['room_num']."</td>
+                                <td>".$row['room_type']." Room</td>
+                                <td>".$row['room_view']."</td>
+                                <td>$".$row['room_price']."</td>
+                                <td>".$row['cap_adult']."</td>
+                                <td>".$row['cap_kids']."</td>
+                                <td><a href='detailRoomU.php?id=$id' class='btn btn-info text-white btn-sm'>Detail</a></td>
+                            </tr>";
+                        }
+                    ?>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- features_room_startt -->
+    <div class="features_room">
         <div class="container">
             <div class="row">
-                <div class="col-xl-5 col-lg-5">
-                    <div class="about_info">
-                        <div class="section_title mb-20px">
-                            <span>About Us</span>
-                            <h3>A Luxuries Hotel <br>
-                                    with Nature</h3>
-                        </div>
-                        <p>Suscipit libero pretium nullam potenti. Interdum, blandit phasellus consectetuer dolor ornare dapibus enim ut tincidunt rhoncus tellus sollicitudin pede nam maecenas, dolor sem. Neque sollicitudin enim. Dapibus lorem feugiat facilisi faucibus et. Rhoncus.</p>
-                        <a href="#" class="line-button">Learn More</a>
+                <div class="col-xl-12">
+                    <div class="section_title text-center mb-100">
+                        <span>Featured Rooms</span>
+                        <h3>Choose a Better Room</h3>
                     </div>
                 </div>
-                <div class="col-xl-7 col-lg-7">
-                    <div class="about_thumb d-flex">
-                        <div class="img_1">
-                            <img src="img/about/about_1.png" alt="">
+            </div>
+        </div>
+        <div class="rooms_here">
+            <div class="single_rooms">
+                <div class="room_thumb">
+                    <img src="img/rooms/1.png" alt="">
+                    <div class="room_heading d-flex justify-content-between align-items-center">
+                        <div class="room_heading_inner">
+                            <span>From $250/night</span>
+                            <h3>Superior Room</h3>
                         </div>
-                        <div class="img_2">
-                            <img src="img/about/about_2.png" alt="">
+                        <a href="roomSuperior.php" class="line-button">book now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="single_rooms">
+                <div class="room_thumb">
+                    <img src="img/rooms/3.png" alt="">
+                    <div class="room_heading d-flex justify-content-between align-items-center">
+                        <div class="room_heading_inner">
+                            <span>From $250/night</span>
+                            <h3>Deluxe Room</h3>
                         </div>
+                        <a href="#" class="line-button">book now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="single_rooms">
+                <div class="room_thumb">
+                    <img src="img/rooms/3.png" alt="">
+                    <div class="room_heading d-flex justify-content-between align-items-center">
+                        <div class="room_heading_inner">
+                            <span>From $250/night</span>
+                            <h3>Signature Room</h3>
+                        </div>
+                        <a href="#" class="line-button">book now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="single_rooms">
+                <div class="room_thumb">
+                    <img src="img/rooms/4.png" alt="">
+                    <div class="room_heading d-flex justify-content-between align-items-center">
+                        <div class="room_heading_inner">
+                            <span>From $250/night</span>
+                            <h3>Couple Room</h3>
+                        </div>
+                        <a href="#" class="line-button">book now</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- about_area_end -->
+    <!-- features_room_end -->
 
-    <!-- about_info_area_start -->
-    <div class="about_info_area">
-        <div class="about_active owl-carousel">
-            <div class="single_slider about_bg_1"></div>
-            <div class="single_slider about_bg_1"></div>
-            <div class="single_slider about_bg_1"></div>
-            <div class="single_slider about_bg_1"></div>
-        </div>
-    </div>
-    <!-- about_info_area_start -->
-
-    <!-- about_main_info_start -->
-    <div class="about_main_info">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-md-6">
-                    <div class="single_about_info">
-                        <h3>We Serve Fresh and <br>
-                            Delicious Food</h3>
-                            <p>Suscipit libero pretium nullam potenti. Interdum, blandit <br> phasellus consectetuer dolor ornare dapibus enim ut tincidunt <br> rhoncus tellus sollicitudin pede nam maecenas, dolor sem. <br> Neque sollicitudin enim. Dapibus lorem feugiat facilisi <br> faucibus et. Rhoncus.
-                            </p>
-                    </div>
-                </div>
-                <div class="col-xl-6 col-md-6">
-                    <div class="single_about_info">
-                        <h3>We Serve Fresh and <br>
-                            Delicious Food</h3>
-                            <p>Suscipit libero pretium nullam potenti. Interdum, blandit <br> phasellus consectetuer dolor ornare dapibus enim ut tincidunt <br> rhoncus tellus sollicitudin pede nam maecenas, dolor sem. <br> Neque sollicitudin enim. Dapibus lorem feugiat facilisi <br> faucibus et. Rhoncus.
-                            </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- about_main_info_end -->
-
-    <!-- forQuery_start -->
-    <div class="forQuery">
+       <!-- forQuery_start -->
+       <div class="forQuery">
         <div class="container">
             <div class="row">
                 <div class="col-xl-10 offset-xl-1 col-md-12">
@@ -207,8 +244,8 @@
     </div>
     <!-- forQuery_end-->
 
-    <!-- instragram_area_start -->
-    <div class="instragram_area">
+       <!-- instragram_area_start -->
+       <div class="instragram_area">
         <div class="single_instagram">
             <img src="img/instragram/1.png" alt="">
             <div class="ovrelay">
@@ -251,7 +288,6 @@
         </div>
     </div>
     <!-- instragram_area_end -->
-    
     <!-- footer -->
     <footer class="footer" >
         <div class="footer_top">
@@ -340,7 +376,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
             </div>
         </div>
     </footer>
-    <!-- footer_end -->
 
     <!-- form itself end-->
     <form id="test-form" class="white-popup-block mfp-hide">
@@ -436,6 +471,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </script>
 
 
-</body>
 
+    
+</body>
 </html>

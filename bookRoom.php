@@ -4,6 +4,7 @@
     
     $id = $_GET['id'];
     $getSpecRoom = $room->getSpecRoom($id);
+
     session_start();
 
 ?> 
@@ -19,6 +20,37 @@
     <script src="https://kit.fontawesome.com/d98ab22c54.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-white bg-secondary text-white">
+        <ul class="nav navbar-nav mr-auto pb-0 mb-0">
+            <li class="nav-item">
+                <a href="index.php" class="nav-link text-white pb-0 px-3"><p>HOME</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="allRoomsU.php" class="nav-link text-white pb-0 px-3"><p>    All Rooms</p></a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="allReservation.php" class="nav-link text-white pb-0 px-3"><p>    Your Reservation</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="blog.php" class="nav-link text-white pb-0 px-3"><p>    Blog</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="about.php" class="nav-link text-white pb-0 px-3"><p>    About</p></a>
+            </li>
+        </ul>
+        <ul  class="nav navbar-nav float-right">
+            <li>
+                <?php
+                    $loginid = $_SESSION['userid'];
+                    echo "<h6><i class='fas fa-user'></i><a href='menuAdmin.php?id=".$loginid."' class='nav-link text-white d-inline pb-0'>Welcome! ".$_SESSION['fname']."</a></h6>";
+                ?>
+            </li>
+            <li>
+                <h6><i class="fas fa-user-times"></i><a href="logout.php" class="nav-link text-white d-inline pb-0">Logout</a></h6>
+            </li>
+        </ul>
+    </nav>
 
 <div class="container w-75 mt-5">
     <h3 class="display-3 text-center">Book Room</h3>
@@ -32,32 +64,10 @@
             <label>Room View:</label>
             <h4><?php echo $getSpecRoom['room_view']?> Room</h4>
                
-                
             <label>Room Price: </label>
             <h4>$ <?php echo $getSpecRoom['room_price']?>-</h4>
-                
-            <!-- <div class="row">   
-                <div class="col-xl-6">
-                    <label for="">Adult</label>
-                    <select class="form-select wide form-control" id="default-select" name="adult">
-                        <option data-display="Adult"></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </div>
-                <div class="col-xl-6">
-                    <label for="">Children</label>
-                    <select class="form-select wide form-control" id="default-select" name="kids">
-                        <option data-display="Children"></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </div>
-            </div>  -->
+            <input type="hidden" name="room_price" value="<?php echo $getSpecRoom['room_price']?>">
+
             <div class="row">
                 <div class="col-md-6">
                     <label for="">Check In Date</label>
@@ -68,10 +78,9 @@
                     <input type="date" id="datepicker2" name="checkOut" placeholder="Check out date" class="form-select wide form-control">
                 </div>
             </div>
+                 
+
             <input type="hidden" name="id" value="<?php echo $getSpecRoom['room_id']?>">
-                                
-            <!-- <label>Picture Update</label>
-            <input type="password" name="pword" class="form-control m-3" placeholder="  " style="border-top: none; border-right: none; border-left: none;"> -->
 
             <div class="row">
                 <div class="col-md-6">

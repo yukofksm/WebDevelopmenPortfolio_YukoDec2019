@@ -1,3 +1,8 @@
+<?php
+    require_once 'class/room.php';
+    $room = new Room();
+    $result = $room->getRooms();
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 

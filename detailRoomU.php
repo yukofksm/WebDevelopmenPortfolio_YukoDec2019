@@ -26,7 +26,7 @@
                 <a href="index.php" class="nav-link text-white pb-0 px-3"><p>HOME</p></a>
             </li>
             <li class="nav-item">
-                <a href="allRooms.php" class="nav-link text-white pb-0 px-3"><p>    All Rooms</p></a>
+                <a href="allRoomsU.php" class="nav-link text-white pb-0 px-3"><p>    All Rooms</p></a>
             </li>
             <!-- <li class="nav-item"> -->
                 <!-- <a href="addRoom.php" class="nav-link text-white pb-0 px-3"><p>    Add Room</p></a> -->

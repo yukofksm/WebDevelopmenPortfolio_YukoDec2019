@@ -4,8 +4,8 @@
     
     $id = $_GET['id'];
     $getSpecRoom = $room->getSpecRoom($id);
-    session_start();
 
+    session_start();
 ?> 
 
 <!DOCTYPE html>
@@ -19,6 +19,37 @@
     <script src="https://kit.fontawesome.com/d98ab22c54.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-white bg-secondary text-white">
+        <ul class="nav navbar-nav mr-auto pb-0 mb-0">
+            <li class="nav-item">
+                <a href="index.php" class="nav-link text-white pb-0 px-3"><p>HOME</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="allRoomsU.php" class="nav-link text-white pb-0 px-3"><p>    All Rooms</p></a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="allReservation.php" class="nav-link text-white pb-0 px-3"><p>    Your Reservation</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="blog.php" class="nav-link text-white pb-0 px-3"><p>    Blog</p></a>
+            </li>
+            <li class="nav-item">
+                <a href="about.php" class="nav-link text-white pb-0 px-3"><p>    About</p></a>
+            </li>
+        </ul>
+        <ul  class="nav navbar-nav float-right">
+            <li>
+                <?php
+                    $loginid = $_SESSION['userid'];
+                    echo "<h6><i class='fas fa-user'></i><a href='menuAdmin.php?id=".$loginid."' class='nav-link text-white d-inline pb-0'>Welcome! ".$_SESSION['fname']."</a></h6>";
+                ?>
+            </li>
+            <li>
+                <h6><i class="fas fa-user-times"></i><a href="logout.php" class="nav-link text-white d-inline pb-0">Logout</a></h6>
+            </li>
+        </ul>
+    </nav>
 
 <div class="container w-75 mt-5">
     <h3 class="display-3 text-center">Book Room</h3>
@@ -42,10 +73,8 @@
                 <h4><?php echo $_SESSION['checkout']?></h4>
                 </div>
             </div>
-            <input type="hidden" name="id" value="<?php echo $getSpecRoom['room_id']?>">
-
             <label>Room Price: </label>
-            <h4>$ <?php echo $getSpecRoom['room_price']*5 ?></h4>
+            <h4>$ <?php echo $_SESSION['total']?></h4>
 
             <div class="row">   
                 <div class="col-xl-6">
@@ -65,18 +94,15 @@
                         <option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
                     </select>
                 </div>
             </div> 
-                                
-            <!-- <label>Picture Update</label>
-            <input type="password" name="pword" class="form-control m-3" placeholder="  " style="border-top: none; border-right: none; border-left: none;"> -->
+
+            
 
             <div class="row">
-                <div class="col-md-6">
-                    
+                <div class="col-md-6">      
+                    <input type="hidden" name="id" value="<?php echo $getSpecRoom['room_id']?>">
                 </div>
                 <div class="col-md-6">
                     <label for=""></label>
