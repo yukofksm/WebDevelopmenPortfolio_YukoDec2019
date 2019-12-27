@@ -4,6 +4,7 @@
     
     $bookid = $_GET['bookid'];
     $sql = $room->getSpecReservation($bookid);
+    session_start();
 
 ?> 
 

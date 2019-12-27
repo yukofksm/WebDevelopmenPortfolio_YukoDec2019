@@ -100,6 +100,42 @@
             }
         }
 
+        public function contact($message,$name,$email,$subject){
+
+            $add = "INSERT INTO `contact`(message,name,email,subject) VALUES('$message','$name','$email','$subject')";
+            if($this->conn->query($add)){
+                echo "OK";
+                // header("Location: ../login/login2.php");
+            }else{
+                echo "ERROR".$this->conn->error;
+            }
+        }
+
+        public function getMessage(){
+            $sql = "SELECT * FROM contact";
+            $result = $this->conn->query($sql);
+
+            $rows = array();
+
+            while($row = $result->fetch_assoc()){
+                $rows[] = $row;
+            }
+            return $rows;
+        }
+
+        public function messageDetail($id){
+            $sql = "SELECT * FROM contact WHERE contact_id = '$id'";
+            $result = $this->conn->query($sql);
+
+            if($result == false){
+                die("No record ".$this->conn->error);
+            }else{
+                return $result->fetch_assoc();
+            }
+        }
+
+
+
         
     }
 ?>

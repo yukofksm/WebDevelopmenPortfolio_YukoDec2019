@@ -44,6 +44,9 @@
                 <a href="allReservation.php" class="nav-link text-white pb-0 px-3"><p>    All Reservation</p></a>
             </li>
             <li class="nav-item">
+                <a href="message.php" class="nav-link text-white pb-0 px-3"><p>    Message</p></a>
+            </li>
+            <li class="nav-item">
                 <a href="blog.php" class="nav-link text-white pb-0 px-3"><p>    Blog</p></a>
             </li>
             <li class="nav-item">
@@ -74,6 +77,7 @@
             <p class="display"><a href="allRooms.php"> All Rooms</a></p>
             <p class="display"><a href="allUsers.php"> All Users Info</a></p>
             <p class="display"><a href="allReservation.php"> All Reservation</a></p>
+            <p class="display"><a href="message.php"> Message</a></p>
         </div>
 
     

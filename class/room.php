@@ -208,7 +208,43 @@
         }
 
         public function superiorRooms(){
-            $sql = "SELECT * FROM room WHERE room_type == 'Superior'";
+            $sql = "SELECT * FROM room WHERE room_type = 'Superior'";
+            $result = $this->conn->query($sql);
+
+            $rows = array();
+
+            while($row = $result->fetch_assoc()){
+                $rows[] = $row;
+            }
+            return $rows;
+        }
+
+        public function deluxeRooms(){
+            $sql = "SELECT * FROM room WHERE room_type = 'Deluxe'";
+            $result = $this->conn->query($sql);
+
+            $rows = array();
+
+            while($row = $result->fetch_assoc()){
+                $rows[] = $row;
+            }
+            return $rows;
+        }
+
+        public function signatureRooms(){
+            $sql = "SELECT * FROM room WHERE room_type = 'Signature'";
+            $result = $this->conn->query($sql);
+
+            $rows = array();
+
+            while($row = $result->fetch_assoc()){
+                $rows[] = $row;
+            }
+            return $rows;
+        }
+
+        public function coupleRooms(){
+            $sql = "SELECT * FROM room WHERE room_type = 'Couple'";
             $result = $this->conn->query($sql);
 
             $rows = array();

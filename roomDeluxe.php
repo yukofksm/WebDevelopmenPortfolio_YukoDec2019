@@ -1,19 +1,22 @@
 <?php
+    require_once 'class/room.php';
+    $room = new Room();
+    $result = $room->deluxeRooms();
     session_start();
 ?>
 
-<!doctype html>
-<html class="no-js" lang="zxx">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Montana</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DELUXE ROOMS</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/d98ab22c54.js" crossorigin="anonymous"></script>
 
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+     <!-- <link rel="manifest" href="site.webmanifest"> -->
+     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
@@ -29,13 +32,8 @@
     <link rel="stylesheet" href="css/slicknav.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
-    <script src="https://kit.fontawesome.com/d98ab22c54.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
 
     <!-- header-start -->
     <header>
@@ -47,8 +45,8 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="index.php">home</a></li>
-                                        <li><a href="allRoomsU.php">rooms</a></li>
+                                        <li><a href="index.php">home</a></li>
+                                        <li><a class="active" href="allRoomsU.php">rooms</a></li>
                                         <li><a href="about.php">About</a></li>
                                         <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
@@ -76,7 +74,7 @@
                         <div class="col-xl-5 col-lg-4 d-none d-lg-block">
                             <div class="book_room">
                                 <div class="socail_links">
-                                    <ul>
+                                <ul>
                                         <li>
                                         <a href=""></a><span style="color: #FFFFFF; opacity: 75%;"><?php echo $_SESSION['fname'];?></span>
                                             <a href="login/login2.php">
@@ -115,199 +113,47 @@
     </header>
     <!-- header-end -->
 
-    <!-- slider_area_start -->
-    <div class="slider_area">
-        <div class="slider_active owl-carousel">
-            <div class="single_slider d-flex align-items-center justify-content-center slider_bg_1">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="slider_text text-center">
-                                <h3>Montana Resort</h3>
-                                <p>Unlock to enjoy the view of Martine</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single_slider  d-flex align-items-center justify-content-center slider_bg_2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="slider_text text-center">
-                                <h3>Life is Beautiful</h3>
-                                <p>Unlock to enjoy the view of Martine</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single_slider d-flex align-items-center justify-content-center slider_bg_1">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="slider_text text-center">
-                                <h3>Montana Resort</h3>
-                                <p>Unlock to enjoy the view of Martine</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single_slider  d-flex align-items-center justify-content-center slider_bg_2">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <div class="slider_text text-center">
-                                <h3>Life is Beautiful</h3>
-                                <p>Unlock to enjoy the view of Martine</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <!-- bradcam_area_start -->
+      <div class="bradcam_area breadcam_bg_1">
+        <h3>Deluxe Rooms</h3>
     </div>
-    <!-- slider_area_end -->
+    <!-- bradcam_area_end -->
 
-    <!-- about_area_start -->
-    <div class="about_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-5 col-lg-5">
-                    <div class="about_info">
-                        <div class="section_title mb-20px">
-                            <span>About Us</span>
-                            <h3>A Luxuries Hotel <br>
-                                with Nature</h3>
-                        </div>
-                        <p>Suscipit libero pretium nullam potenti. Interdum, blandit phasellus consectetuer dolor ornare
-                            dapibus enim ut tincidunt rhoncus tellus sollicitudin pede nam maecenas, dolor sem. Neque
-                            sollicitudin enim. Dapibus lorem feugiat facilisi faucibus et. Rhoncus.</p>
-                        <a href="#" class="line-button">Learn More</a>
-                    </div>
-                </div>
-                <div class="col-xl-7 col-lg-7">
-                    <div class="about_thumb d-flex">
-                        <div class="img_1">
-                            <img src="img/about/about_1.png" alt="">
-                        </div>
-                        <div class="img_2">
-                            <img src="img/about/about_2.png" alt="">
-                        </div>
-                    </div>
-                </div>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <th>Number</th>
+                        <th>Type</th>
+                        <th>View</th>
+                        <th>Price</th>
+                        <th>Adult</th>
+                        <th>Children</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                    <?php
+                        foreach ($result as $row) {
+                            $id = $row['room_id'];
+                            echo "
+                            <tr>
+                                <td class='text-center'>".$row['room_num']."</td>
+                                <td>".$row['room_type']." Room</td>
+                                <td>".$row['room_view']."</td>
+                                <td>$".$row['room_price']."</td>
+                                <td>".$row['cap_adult']."</td>
+                                <td>".$row['cap_kids']."</td>
+                                <td><a href='detailRoomU.php?id=$id' class='btn btn-info text-white btn-sm'>Detail</a></td>
+                            </tr>";
+                        }
+                    ?>
+                       
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <!-- about_area_end -->
-
-    <!-- offers_area_start -->
-    <div class="offers_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section_title text-center mb-100">
-                        <span>Our Offers</span>
-                        <h3>Ongoing Offers</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_offers">
-                        <div class="about_thumb">
-                            <img src="img/offers/1.png" alt="">
-                        </div>
-                        <h3>Up to 35% savings on Club <br>
-                            rooms and Suites</h3>
-                        <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
-                        </ul>
-                        <a href="detailRoomU.php?id=1" class="book_now">book now</a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_offers">
-                        <div class="about_thumb">
-                            <img src="img/offers/2.png" alt="">
-                        </div>
-                        <h3>Up to 35% savings on Club <br>
-                            rooms and Suites</h3>
-                        <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
-                        </ul>
-                        <a href="detailRoomU.php?id=2" class="book_now">book now</a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_offers">
-                        <div class="about_thumb">
-                            <img src="img/offers/3.png" alt="">
-                        </div>
-                        <h3>Up to 35% savings on Club <br>
-                            rooms and Suites</h3>
-                        <ul>
-                            <li>Luxaries condition</li>
-                            <li>3 Adults & 2 Children size</li>
-                            <li>Sea view side</li>
-                        </ul>
-                        <a href="detailRoomU.php?id=3" class="book_now">book now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- offers_area_end -->
-
-    <!-- video_area_start -->
-    <div class="video_area video_bg overlay">
-        <div class="video_area_inner text-center">
-            <span>Montana Sea View</span>
-            <h3>Relax and Enjoy your <br>
-                Vacation </h3>
-            <a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y" class="video_btn popup-video">
-                <i class="fa fa-play"></i>
-            </a>
-        </div>
-    </div>
-    <!-- video_area_end -->
-
-    <!-- about_area_start -->
-    <div class="about_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-7 col-lg-7">
-                    <div class="about_thumb2 d-flex">
-                        <div class="img_1">
-                            <img src="img/about/1.png" alt="">
-                        </div>
-                        <div class="img_2">
-                            <img src="img/about/2.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-5 col-lg-5">
-                    <div class="about_info">
-                        <div class="section_title mb-20px">
-                            <span>Delicious Food</span>
-                            <h3>We Serve Fresh and <br>
-                                Delicious Food</h3>
-                        </div>
-                        <p>Suscipit libero pretium nullam potenti. Interdum, blandit phasellus consectetuer dolor ornare
-                            dapibus enim ut tincidunt rhoncus tellus sollicitudin pede nam maecenas, dolor sem. Neque
-                            sollicitudin enim. Dapibus lorem feugiat facilisi faucibus et. Rhoncus.</p>
-                        <a href="#" class="line-button">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- about_area_end -->
 
     <!-- features_room_startt -->
     <div class="features_room">
@@ -342,7 +188,7 @@
                             <span>From $250/night</span>
                             <h3>Deluxe Room</h3>
                         </div>
-                        <a href="roomDeluxe.php" class="line-button">book now</a>
+                        <a href="roomDelaxe.php" class="line-button">book now</a>
                     </div>
                 </div>
             </div>
@@ -374,8 +220,8 @@
     </div>
     <!-- features_room_end -->
 
-    <!-- forQuery_start -->
-    <div class="forQuery">
+       <!-- forQuery_start -->
+       <div class="forQuery">
         <div class="container">
             <div class="row">
                 <div class="col-xl-10 offset-xl-1 col-md-12">
@@ -383,12 +229,12 @@
                         <div class="row align-items-center justify-content-center">
                             <div class="col-xl-6 col-md-6">
                                 <div class="Query_text">
-                                    <p>For Reservation 0r Query?</p>
+                                        <p>For Reservation 0r Query?</p>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-md-6">
                                 <div class="phone_num">
-                                    <a href="#" class="mobile_no">+10 576 377 4789</a>
+                                        <a href="#" class="mobile_no">+10 576 377 4789</a>
                                 </div>
                             </div>
                         </div>
@@ -399,8 +245,8 @@
     </div>
     <!-- forQuery_end-->
 
-    <!-- instragram_area_start -->
-    <div class="instragram_area">
+       <!-- instragram_area_start -->
+       <div class="instragram_area">
         <div class="single_instagram">
             <img src="img/instragram/1.png" alt="">
             <div class="ovrelay">
@@ -443,9 +289,8 @@
         </div>
     </div>
     <!-- instragram_area_end -->
-
     <!-- footer -->
-    <footer class="footer">
+    <footer class="footer" >
         <div class="footer_top">
             <div class="container">
                 <div class="row">
@@ -454,24 +299,24 @@
                             <h3 class="footer_title">
                                 address
                             </h3>
-                            <p class="footer_text"> 200, Green road, Mongla, <br>
-                                New Yor City USA</p>
+                            <p class="footer_text" >  200, Green road, Mongla, <br>
+                                    New Yor City USA</p>
                             <a href="#" class="line-button">Get Direction</a>
                         </div>
                     </div>
                     <div class="col-xl-3 col-md-6 col-lg-3">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                Reservation
+                                    Reservation
                             </h3>
-                            <p class="footer_text">+10 367 267 2678 <br>
-                                reservation@montana.com</p>
+                            <p class="footer_text" >+10 367 267 2678 <br>
+                                    reservation@montana.com</p>
                         </div>
                     </div>
                     <div class="col-xl-2 col-md-6 col-lg-2">
                         <div class="footer_widget">
                             <h3 class="footer_title">
-                                Navigation
+                                    Navigation
                             </h3>
                             <ul>
                                 <li><a href="#">Home</a></li>
@@ -488,7 +333,7 @@
                             </h3>
                             <form action="#" class="newsletter_form">
                                 <input type="text" placeholder="Enter your mail">
-                                <button type="submit">Sign Up</button>
+                                <button type="submit" >Sign Up</button>
                             </form>
                             <p class="newsletter_text">Subscribe newsletter to get updates</p>
                         </div>
@@ -502,9 +347,10 @@
                 <div class="row">
                     <div class="col-xl-8 col-md-7 col-lg-9">
                         <p class="copy_right">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
                     </div>
                     <div class="col-xl-4 col-md-5 col-lg-3">
                         <div class="socail_links">
@@ -532,40 +378,54 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
 
-    <!-- link that opens popup -->
-
     <!-- form itself end-->
-        <div id="test-form" class="white-popup-block mfp-hide">
-                <div class="popup_box ">
-                        <div class="popup_inner">
-                            <h3>Check Availability</h3>
-                            <form action="action/roomAction.php" method="post">
-                                <div class="row">
-                                    <div class="col-xl-6">
-                                        <input id="datepicker" name="checkIn" placeholder="Check in date">
-                                    </div>
-                                    <div class="col-xl-6">
-                                        <input id="datepicker2" name="checkOut" placeholder="Check out date">
-                                    </div>
-                                    
-                                    <div class="col-xl-12">
-                                        <select class="form-select wide" id="default-select" name="roomType" class="">
-                                            <option data-display="Room type">Room type</option>
-                                            <option value="superior">Superior Room</option>
-                                            <option value="deluxe">Deluxe Room</option>
-                                            <option value="sign">Signature Room</option>
-                                            <option value="couple">Couple Room</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <button type="submit" name="check" class="boxed-btn3">Check Availability</button>
-                                    </div>
-                                </div>
-                            </form>
+    <form id="test-form" class="white-popup-block mfp-hide">
+        <div class="popup_box ">
+                <div class="popup_inner">
+                    <h3>Check Availability</h3>
+                    <form action="#">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <input id="datepicker" placeholder="Check in date">
+                            </div>
+                            <div class="col-xl-6">
+                                <input id="datepicker2" placeholder="Check out date">
+                            </div>
+                            <div class="col-xl-6">
+                                <select class="form-select wide" id="default-select" class="">
+                                    <option data-display="Adult">1</option>
+                                    <option value="1">2</option>
+                                    <option value="2">3</option>
+                                    <option value="3">4</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-6">
+                                <select class="form-select wide" id="default-select" class="">
+                                    <option data-display="Children">1</option>
+                                    <option value="1">2</option>
+                                    <option value="2">3</option>
+                                    <option value="3">4</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-12">
+                                <select class="form-select wide" id="default-select" class="">
+                                    <option data-display="Room type">Room type</option>
+                                    <option value="1">Laxaries Rooms</option>
+                                    <option value="2">Deluxe Room</option>
+                                    <option value="3">Signature Room</option>
+                                    <option value="4">Couple Room</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-12">
+                                <button type="submit" class="boxed-btn3">Check Availability</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+                </div>
             </div>
-    <!-- form itself end -->
+    </form>
+<!-- form itself end -->
+
 
     <!-- JS here -->
     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
@@ -597,22 +457,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/main.js"></script>
     <script>
         $('#datepicker').datepicker({
-            dateFormat: "yy/mm/dd",
-            changeMonht: true,
-            changeYear: true,
-            minDate: "dateToday",
-
             iconsLibrary: 'fontawesome',
             icons: {
              rightIcon: '<span class="fa fa-caret-down"></span>'
          }
         });
         $('#datepicker2').datepicker({
-            dateFormat: "yy/mm/dd",
-            changeMonht: true,
-            changeYear: true,
-            minDate: "dateToday",
-
             iconsLibrary: 'fontawesome',
             icons: {
              rightIcon: '<span class="fa fa-caret-down"></span>'
@@ -623,6 +473,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
+    
 </body>
-
 </html>

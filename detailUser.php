@@ -4,6 +4,7 @@
 
     $id = $_GET['id'];
     $result = $user->userDetail($id);
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

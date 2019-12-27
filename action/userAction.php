@@ -47,6 +47,18 @@
         $id = $_GET['user_id'];
 
         $user->deleteUser($id);
+
+
+    }elseif (isset($_POST['send'])){
+
+        $message = $_POST['message'];
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $subject = $_POST['subject'];
+
+        // echo "hi";
+
+        $user->contact($message,$name,$email,$subject);
     }
 
 ?>
