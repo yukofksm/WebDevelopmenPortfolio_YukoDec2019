@@ -4,6 +4,7 @@
     
     $userid = $_GET['id'];
     $getSpecUser = $user->getSpecUser($userid);
+    session_start();
 
 ?> 
 

@@ -4,6 +4,7 @@
     
     $id = $_GET['id'];
     $getSpecRoom = $room->getSpecRoom($id);
+    session_start();
 
 ?> 
 

@@ -2,6 +2,7 @@
     require_once 'class/room.php';
     $room = new Room();
     $result = $room->getRooms();
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -187,7 +188,7 @@
                             <span>From $250/night</span>
                             <h3>Deluxe Room</h3>
                         </div>
-                        <a href="#" class="line-button">book now</a>
+                        <a href="roomDeluxe.php" class="line-button">book now</a>
                     </div>
                 </div>
             </div>
@@ -199,7 +200,7 @@
                             <span>From $250/night</span>
                             <h3>Signature Room</h3>
                         </div>
-                        <a href="#" class="line-button">book now</a>
+                        <a href="roomSignature.php" class="line-button">book now</a>
                     </div>
                 </div>
             </div>
@@ -211,7 +212,7 @@
                             <span>From $250/night</span>
                             <h3>Couple Room</h3>
                         </div>
-                        <a href="#" class="line-button">book now</a>
+                        <a href="roomCouple.php" class="line-button">book now</a>
                     </div>
                 </div>
             </div>
